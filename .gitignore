@@ -12,8 +12,9 @@ task_plan.md
 findings.md
 progress.md
 
-# Backups
+# Backups (lokale Originale vor Komprimierung)
 Assets/_backup/
+Assets/heroes/_orig/
 
 # OS
 .DS_Store
