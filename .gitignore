@@ -1,0 +1,40 @@
+# Build artifacts / Helper Scripts (werden nicht eingecheckt)
+_build_pages.py
+_content_services.py
+_content_services2.py
+_content_top.py
+_run_build.py
+_generate_heroes.mjs
+_runway_log.txt
+
+# Planungs-Notizen (nicht für Git)
+task_plan.md
+findings.md
+progress.md
+
+# Backups
+Assets/_backup/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+
+# Logs / Temp
+*.log
+*.tmp
+
+# Editor
+.vscode/
+.idea/
+*.iml
+.claude/
+
+# Env / Secrets (Sicherheit)
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+credentials.json
+secrets.json
