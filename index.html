@@ -337,7 +337,7 @@
 ═══════════════════════════════════════════ -->
 <div id="trust-bar" role="region" aria-label="Vertrauens-Kennzahlen">
   <div class="container" style="padding-top:2rem; padding-bottom:2rem;">
-    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:1.5rem; text-align:center;">
+    <div class="trust-bar-grid">
       <div class="fade-up">
         <div style="font-size:clamp(1.6rem, 4vw, 2.5rem); font-weight:800; color:var(--accent); line-height:1;">7+</div>
         <div style="font-size:0.85rem; color:var(--muted); margin-top:0.35rem; font-weight:500;">Jahre Praxiserfahrung</div>
@@ -374,7 +374,7 @@
     </div>
 
     <!-- Services Grid -->
-    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:1.25rem;">
+    <div class="services-grid">
 
       <!-- 1. Autotransporte -->
       <a class="card card-link fade-up" href="leistungen/autotransporte.html" style="text-decoration:none; color:inherit;">
@@ -489,7 +489,7 @@
 <div class="section-divider" aria-hidden="true"></div>
 <section id="ueber-uns" style="background: linear-gradient(180deg, var(--navy) 0%, #0d1f3c 100%);" aria-labelledby="ueber-uns-title">
   <div class="container">
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
+    <div class="ueberuns-grid">
 
       <!-- Left: Text -->
       <div class="fade-up">
@@ -545,6 +545,7 @@
              style="width:100%; height:420px; object-fit:cover; border-radius:12px; position:relative; z-index:1; display:block;" />
         <img src="Assets/Transporter seiten perfektive.png"
              alt="bk autotransporte Transporter seitlich"
+             class="ueberuns-overlay-img"
              style="width:55%; border-radius:10px; position:absolute; bottom:-2rem; right:-2rem; z-index:2; border:3px solid var(--navy); box-shadow:0 20px 60px rgba(0,0,0,0.5);" />
       </div>
 
@@ -568,7 +569,7 @@
     </div>
 
     <!-- Target Group Grid -->
-    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:1rem; margin-bottom:3rem;">
+    <div class="zielgruppen-grid">
 
       <div class="target-card fade-up">
         <div style="width:52px; height:52px; background:rgba(0,168,240,0.1); border-radius:12px; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem;" aria-hidden="true">
@@ -672,7 +673,7 @@
       </p>
     </div>
 
-    <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:1rem;">
+    <div class="usp-grid">
 
       <div class="usp-card fade-up">
         <h3 style="font-size:1rem; font-weight:700; color:var(--text); margin-bottom:0.35rem;">
@@ -749,7 +750,7 @@
       </p>
     </div>
 
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem;">
+    <div class="kontakt-section-grid">
 
       <!-- Left: Form -->
       <div class="fade-up">
@@ -759,7 +760,7 @@
               <label for="name" class="form-label">Name *</label>
               <input type="text" id="name" name="name" class="form-input" placeholder="Ihr vollständiger Name" required autocomplete="name" />
             </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div class="form-row-grid">
               <div>
                 <label for="email" class="form-label">E-Mail *</label>
                 <input type="email" id="email" name="email" class="form-input" placeholder="ihre@email.de" required autocomplete="email" />
@@ -894,7 +895,7 @@
 ═══════════════════════════════════════════ -->
 <footer role="contentinfo">
   <div class="container" style="padding-top:3.5rem; padding-bottom:2rem;">
-    <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; margin-bottom:3rem;">
+    <div class="footer-grid">
 
       <!-- Brand column -->
       <div>
@@ -944,8 +945,8 @@
         <a href="zielgruppen.html" class="footer-link">Zielgruppen</a>
         <a href="#warum-bk" class="footer-link">Unsere Stärken</a>
         <a href="kontakt.html" class="footer-link">Kontakt</a>
-        <a href="#impressum" class="footer-link">Impressum</a>
-        <a href="#datenschutz" class="footer-link">Datenschutz</a>
+        <a href="impressum.html" class="footer-link">Impressum</a>
+        <a href="datenschutz.html" class="footer-link">Datenschutz</a>
       </nav>
 
       <!-- Kontakt -->
@@ -964,12 +965,23 @@
         &copy; 2026 bk autotransporte – Bilal Kilic Autotransporte. Alle Rechte vorbehalten.
       </p>
       <div style="display:flex; gap:1.5rem;">
-        <a href="#impressum" style="font-size:0.82rem; color:var(--muted); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Impressum</a>
-        <a href="#datenschutz" style="font-size:0.82rem; color:var(--muted); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Datenschutz</a>
+        <a href="impressum.html" style="font-size:0.82rem; color:var(--muted); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Impressum</a>
+        <a href="datenschutz.html" style="font-size:0.82rem; color:var(--muted); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Datenschutz</a>
       </div>
     </div>
   </div>
 </footer>
+
+
+<!-- Cookie Banner -->
+<div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie-Hinweis">
+  <p class="cookie-banner-text">
+    Diese Website verwendet ausschließlich technisch notwendige Cookies für den Betrieb der Seite. Es werden keine Tracking- oder Analyse-Cookies eingesetzt. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.
+  </p>
+  <div class="cookie-banner-actions">
+    <button class="cookie-banner-btn primary" id="cookie-accept" type="button">Verstanden</button>
+  </div>
+</div>
 
 
 <!-- ═══════════════════════════════════════════
@@ -978,6 +990,22 @@
 <script>
 (function() {
   'use strict';
+
+  // ── Cookie Banner ────────────────────────────
+  try {
+    var COOKIE_KEY = 'bk_cookie_consent';
+    var banner = document.getElementById('cookie-banner');
+    var acceptBtn = document.getElementById('cookie-accept');
+    if (banner && !localStorage.getItem(COOKIE_KEY)) {
+      setTimeout(function(){ banner.classList.add('visible'); }, 600);
+    }
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', function(){
+        try { localStorage.setItem(COOKIE_KEY, '1'); } catch(e) {}
+        if (banner) banner.classList.remove('visible');
+      });
+    }
+  } catch(e) {}
 
   // ── Mobile Menu ──────────────────────────────
   const menuToggle = document.getElementById('menu-toggle');
@@ -1029,7 +1057,7 @@
   document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     anchor.addEventListener('click', function(e) {
       var targetId = this.getAttribute('href');
-      if (targetId === '#' || targetId === '#impressum' || targetId === '#datenschutz') return;
+      if (targetId === '#') return;
       var target = document.querySelector(targetId);
       if (target) {
         e.preventDefault();
@@ -1205,43 +1233,6 @@
       document.addEventListener('touchstart', onGesture, { once: true });
     });
   })();
-
-  // ── Responsive grid fixes ─────────────────────
-  function applyResponsiveGrids() {
-    var w = window.innerWidth;
-    var trustBar = document.querySelector('#trust-bar .container > div');
-    var targetGrid = document.querySelector('#zielgruppen > .container > div:nth-child(2)');
-    var uspGrid = document.querySelector('#warum-bk > .container > div:nth-child(2)');
-    var contactGrid = document.querySelector('#kontakt > .container > div:nth-child(2)');
-    var aboutGrid = document.querySelector('#ueber-uns > .container > div');
-    var footerGrid = document.querySelector('footer > .container > div:first-child');
-
-    if (w < 768) {
-      if (trustBar) trustBar.style.gridTemplateColumns = 'repeat(2, 1fr)';
-      if (targetGrid) targetGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-      if (uspGrid) uspGrid.style.gridTemplateColumns = '1fr';
-      if (contactGrid) contactGrid.style.gridTemplateColumns = '1fr';
-      if (aboutGrid) aboutGrid.style.gridTemplateColumns = '1fr';
-      if (footerGrid) footerGrid.style.gridTemplateColumns = '1fr 1fr';
-    } else if (w < 1024) {
-      if (trustBar) trustBar.style.gridTemplateColumns = 'repeat(2, 1fr)';
-      if (targetGrid) targetGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-      if (uspGrid) uspGrid.style.gridTemplateColumns = '1fr';
-      if (contactGrid) contactGrid.style.gridTemplateColumns = '1fr';
-      if (aboutGrid) aboutGrid.style.gridTemplateColumns = '1fr';
-      if (footerGrid) footerGrid.style.gridTemplateColumns = '1fr 1fr';
-    } else {
-      if (trustBar) trustBar.style.gridTemplateColumns = 'repeat(4, 1fr)';
-      if (targetGrid) targetGrid.style.gridTemplateColumns = 'repeat(4, 1fr)';
-      if (uspGrid) uspGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-      if (contactGrid) contactGrid.style.gridTemplateColumns = '1fr 1fr';
-      if (aboutGrid) aboutGrid.style.gridTemplateColumns = '1fr 1fr';
-      if (footerGrid) footerGrid.style.gridTemplateColumns = '2fr 1fr 1fr 1fr';
-    }
-  }
-
-  applyResponsiveGrids();
-  window.addEventListener('resize', applyResponsiveGrids);
 
 })();
 </script>

@@ -226,7 +226,7 @@
 </main>
 <footer role="contentinfo">
   <div class="container" style="padding-top:3.5rem; padding-bottom:2rem;">
-    <div class="footer-grid" style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; margin-bottom:3rem;">
+    <div class="footer-grid">
       <div>
         <img src="../Assets/Logo mit text Transparent.png" alt="bk autotransporte" class="logo-inverted" style="height:52px; width:auto; margin-bottom:1.25rem;" />
         <p style="font-size:0.9rem; color:var(--muted); line-height:1.7; max-width:300px;">
@@ -246,8 +246,8 @@
         <a href="../ueber-uns.html" class="footer-link">Über uns</a>
         <a href="../zielgruppen.html" class="footer-link">Zielgruppen</a>
         <a href="../kontakt.html" class="footer-link">Kontakt</a>
-        <a href="#impressum" class="footer-link">Impressum</a>
-        <a href="#datenschutz" class="footer-link">Datenschutz</a>
+        <a href="../impressum.html" class="footer-link">Impressum</a>
+        <a href="../datenschutz.html" class="footer-link">Datenschutz</a>
       </nav>
       <address style="font-style:normal;">
         <h3 style="font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--text); margin-bottom:1.25rem;">Kontakt</h3>
@@ -260,14 +260,40 @@
     <div style="border-top:1px solid var(--border); padding-top:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
       <p style="font-size:0.82rem; color:var(--muted);">© 2026 bk autotransporte – Bilal Kilic Autotransporte. Alle Rechte vorbehalten.</p>
       <div style="display:flex; gap:1.5rem;">
-        <a href="#impressum" class="footer-link" style="margin:0;">Impressum</a>
-        <a href="#datenschutz" class="footer-link" style="margin:0;">Datenschutz</a>
+        <a href="../impressum.html" class="footer-link" style="margin:0;">Impressum</a>
+        <a href="../datenschutz.html" class="footer-link" style="margin:0;">Datenschutz</a>
       </div>
     </div>
   </div>
 </footer>
+
+<!-- Cookie Banner -->
+<div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie-Hinweis">
+  <p class="cookie-banner-text">
+    Diese Website verwendet ausschließlich technisch notwendige Cookies für den Betrieb der Seite. Es werden keine Tracking- oder Analyse-Cookies eingesetzt. Mehr dazu in unserer <a href="../datenschutz.html">Datenschutzerklärung</a>.
+  </p>
+  <div class="cookie-banner-actions">
+    <button class="cookie-banner-btn primary" id="cookie-accept" type="button">Verstanden</button>
+  </div>
+</div>
 <script>
 (function() {
+  // Cookie Banner
+  try {
+    var COOKIE_KEY = 'bk_cookie_consent';
+    var banner = document.getElementById('cookie-banner');
+    var acceptBtn = document.getElementById('cookie-accept');
+    if (banner && !localStorage.getItem(COOKIE_KEY)) {
+      setTimeout(function(){ banner.classList.add('visible'); }, 600);
+    }
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', function(){
+        try { localStorage.setItem(COOKIE_KEY, '1'); } catch(e) {}
+        if (banner) banner.classList.remove('visible');
+      });
+    }
+  } catch(e) {}
+
   // Mobile Menu
   var menuToggle = document.getElementById('menu-toggle');
   var menuClose  = document.getElementById('menu-close');
@@ -313,16 +339,6 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   fadeEls.forEach(function(el){ obs.observe(el); });
 
-  // Responsive Footer Grid
-  function fixFooterGrid(){
-    var fg = document.querySelector('.footer-grid');
-    if (!fg) return;
-    if (window.innerWidth < 768) fg.style.gridTemplateColumns = '1fr 1fr';
-    else if (window.innerWidth < 1024) fg.style.gridTemplateColumns = '1fr 1fr';
-    else fg.style.gridTemplateColumns = '2fr 1fr 1fr 1fr';
-  }
-  fixFooterGrid();
-  window.addEventListener('resize', fixFooterGrid);
 })();
 </script>
 </body>
