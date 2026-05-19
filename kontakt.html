@@ -130,6 +130,10 @@
       <p style="color:var(--muted); margin-bottom:1.5rem; font-size:0.95rem;">Beschreiben Sie kurz Ihren Bedarf – wir antworten in der Regel innerhalb von 24 Stunden.</p>
 
       <form id="contact-form" novalidate>
+        <!-- Honeypot: nur für Bots sichtbar -->
+        <div style="position:absolute; left:-9999px; height:0; overflow:hidden;" aria-hidden="true">
+          <label>Website (bitte leer lassen)<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+        </div>
         <div style="display:grid; gap:1.25rem;">
           <div>
             <label for="name" class="form-label">Name *</label>
@@ -215,19 +219,33 @@
   var form = document.getElementById('contact-form');
   var msg = document.getElementById('form-success');
   if (!form) return;
-  form.addEventListener('submit', function(e){
+  form.addEventListener('submit', async function(e){
     e.preventDefault();
     var n = document.getElementById('name').value.trim();
     var em = document.getElementById('email').value.trim();
+    var ph = (document.getElementById('phone') || {}).value || '';
+    var sv = (document.getElementById('service') || {}).value || '';
     var m = document.getElementById('message').value.trim();
+    var wh = (form.querySelector('input[name="website"]') || {}).value || '';
     if (!n || !em || !m) { alert('Bitte füllen Sie alle Pflichtfelder aus.'); return; }
     var btn = form.querySelector('button[type="submit"]');
+    var orig = btn.innerHTML;
     btn.textContent = 'Wird gesendet…'; btn.disabled = true;
-    setTimeout(function(){
+    try {
+      var r = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: n, email: em, phone: ph.trim(), service: sv, message: m, website: wh })
+      });
+      var d = await r.json().catch(function(){ return {}; });
+      if (!r.ok) throw new Error(d.error || 'Versand fehlgeschlagen.');
       form.reset(); msg.style.display = 'block';
-      btn.textContent = 'Anfrage senden'; btn.disabled = false;
-      setTimeout(function(){ msg.style.display = 'none'; }, 6000);
-    }, 700);
+      setTimeout(function(){ msg.style.display = 'none'; }, 8000);
+    } catch (err) {
+      alert(err.message || 'Versand fehlgeschlagen. Bitte später erneut versuchen.');
+    } finally {
+      btn.innerHTML = orig; btn.disabled = false;
+    }
   });
 
   // Responsive Kontakt-Grid

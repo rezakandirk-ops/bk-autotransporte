@@ -755,6 +755,10 @@
       <!-- Left: Form -->
       <div class="fade-up">
         <form id="contact-form" novalidate>
+          <!-- Honeypot: nur für Bots sichtbar -->
+          <div style="position:absolute; left:-9999px; height:0; overflow:hidden;" aria-hidden="true">
+            <label>Website (bitte leer lassen)<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+          </div>
           <div style="display:grid; gap:1.25rem;">
             <div>
               <label for="name" class="form-label">Name *</label>
@@ -1085,12 +1089,15 @@
   var form        = document.getElementById('contact-form');
   var successMsg  = document.getElementById('form-success');
 
-  form.addEventListener('submit', function(e) {
+  form.addEventListener('submit', async function(e) {
     e.preventDefault();
 
     var name    = document.getElementById('name').value.trim();
     var email   = document.getElementById('email').value.trim();
+    var phone   = document.getElementById('phone').value.trim();
+    var service = document.getElementById('service').value;
     var message = document.getElementById('message').value.trim();
+    var website = (form.querySelector('input[name="website"]') || {}).value || '';
 
     if (!name || !email || !message) {
       alert('Bitte füllen Sie alle Pflichtfelder aus.');
@@ -1098,20 +1105,28 @@
     }
 
     var submitBtn = form.querySelector('button[type="submit"]');
+    var originalText = submitBtn.innerHTML;
     submitBtn.textContent = 'Wird gesendet…';
     submitBtn.disabled = true;
 
-    // Simulate async (replace with real fetch/backend call)
-    setTimeout(function() {
+    try {
+      var resp = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, email: email, phone: phone, service: service, message: message, website: website })
+      });
+      var data = await resp.json().catch(function(){ return {}; });
+      if (!resp.ok) throw new Error(data.error || 'Versand fehlgeschlagen.');
+
       form.reset();
       successMsg.style.display = 'block';
-      submitBtn.textContent = 'Anfrage senden';
+      setTimeout(function(){ successMsg.style.display = 'none'; }, 8000);
+    } catch (err) {
+      alert(err.message || 'Versand fehlgeschlagen. Bitte später erneut versuchen.');
+    } finally {
+      submitBtn.innerHTML = originalText;
       submitBtn.disabled = false;
-
-      setTimeout(function() {
-        successMsg.style.display = 'none';
-      }, 6000);
-    }, 800);
+    }
   });
 
   // ── Hero Video Crossfade Carousel ────────────
